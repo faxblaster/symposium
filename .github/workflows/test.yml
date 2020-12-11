@@ -40,6 +40,9 @@ jobs:
                 php artisan key:generate
 
             - name: Run tests
+              run: npm ci && npm run prod
+
+            - name: Run tests
               run: vendor/bin/phpunit
               env:
                 GITHUB_CLIENT_ID: ${{ secrets.CLIENT_ID }}
