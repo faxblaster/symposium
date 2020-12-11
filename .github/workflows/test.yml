@@ -43,14 +43,11 @@ jobs:
               run: npm ci && npm run prod
 
             - name: PHPUnit
-              uses: theomessin/action-phpcov
-              with:
-                min_coverage: 35
-                now_project: "action-phpcov"
-                now_token: ${{ secrets.NOW_TOKEN }}
-                phpunit: "./vendor/bin/phpunit --testdox"
+              uses: danhunsaker/clover-reporter-action@v0.2.17-clover
+              script: vendor/bin/phpunit --coverage-clover=coverage.clover
               env:
                 GITHUB_CLIENT_ID: ${{ secrets.CLIENT_ID }}
                 GITHUB_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-
-
+              with:
+                github-token: ${{ secrets.GITHUB_TOKEN }}
+                clover-file: coverage.clover
