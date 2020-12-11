@@ -40,8 +40,8 @@ jobs:
             - name: Run tests
               run: vendor/bin/phpunit
               env:
-                GITHUB_CLIENT_ID = ${{ secrets.CLIENT_ID }}
-                GITHUB_CLIENT_SECRET = ${{ secrets.CLIENT_SECRET }}
+                GITHUB_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+                GITHUB_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
 
             - name: Code Coverage
               run: |
