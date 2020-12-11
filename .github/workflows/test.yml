@@ -43,7 +43,7 @@ jobs:
               run: npm ci && npm run prod
 
             - name: PHPUnit
-              script: vendor/bin/phpunit --coverage-clover=coverage.clover
+              run: vendor/bin/phpunit --coverage-clover=coverage.clover
               env:
                 GITHUB_CLIENT_ID: ${{ secrets.CLIENT_ID }}
                 GITHUB_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
