@@ -1,7 +1,6 @@
 name: Test
 
 on:
-    push:
     pull_request:
         branches: [ develop ]
 
@@ -38,6 +37,9 @@ jobs:
               run: |
                 cp .env.example .env
                 php artisan key:generate
+
+            - name: Build Assets
+              run: npm ci && npm run prod
 
             - name: PHPUnit
               run: vendor/bin/phpunit --coverage-clover=coverage.clover
