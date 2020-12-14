@@ -1,9 +1,8 @@
 name: Test
 
 on:
-    push:
-        branches: [ develop ]
     pull_request:
+        branches: [ develop ]
 
 jobs:
     tests:
@@ -39,18 +38,8 @@ jobs:
                 cp .env.example .env
                 php artisan key:generate
 
-            - name: Build Assets
-              run: npm ci && npm run prod
-
             - name: PHPUnit
               run: vendor/bin/phpunit --coverage-clover=coverage.clover
               env:
                 GITHUB_CLIENT_ID: ${{ secrets.CLIENT_ID }}
                 GITHUB_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-
-            - name: Code Coverage
-              uses: danhunsaker/clover-reporter-action@v0.2.17-clover
-              with:
-                github-token: ${{ secrets.GITHUB_TOKEN }}
-                clover-file: coverage.clover
-
